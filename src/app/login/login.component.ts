@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
+import { FormControl, NgForm } from "@angular/forms";
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
+  constructor() {}
 
+  ngOnInit() {}
 
-  constructor() {
-
-
+  login(loginForm: NgForm, event: SubmitEvent) {
+    console.log(loginForm.value);
   }
 
-  ngOnInit() {
-
+  showEmailError(emailControl: FormControl) {
+    return emailControl.dirty && emailControl.errors?.required;
   }
 
+  emailChange(event) {}
 }

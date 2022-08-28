@@ -1,27 +1,48 @@
 <mat-card class="login-page">
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
-
-    <form class="login-form data-form">
+    <form
+      class="login-form data-form"
+      #loginForm="ngForm"
+      (ngSubmit)="login(loginForm, $event)"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          #email="ngModel"
+          ngModel
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          (ngModelChange)="emailChange($event)"
+        />
+      </mat-form-field>
+      <mat-error *ngIf="showEmailError(email.control)"
+        >The email is mandatory</mat-error
+      >
 
       <mat-form-field>
-
-        <input matInput type="email" name="email"
-               placeholder="Email">
-
+        <input
+          matInput
+          ngModel
+          #password="ngModel"
+          type="password"
+          placeholder="Password"
+          name="password"
+          required
+        />
       </mat-form-field>
 
-      <mat-form-field>
-
-        <input matInput type="password" placeholder="Password">
-
-      </mat-form-field>
-
-      <button mat-raised-button color="primary">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
         Login
       </button>
-
     </form>
-
+    <h4>{{ loginForm.valid }}</h4>
   </mat-card-content>
 </mat-card>
